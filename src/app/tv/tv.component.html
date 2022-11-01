@@ -1,0 +1,53 @@
+<div class="container pt-5">
+    <input type="text" class="form-control mt-5 w-50 m-auto" (keyup)="tvSearch()" placeholder="search..."
+        [(ngModel)]="value">
+        <h2 class="text-center py-4">enjoy and watch all favourite tv show here </h2>
+
+</div>
+
+
+<div class="container " *ngIf="value == ''">
+    <div class="row pt-4">
+        <div *ngFor="let tv of tvs" class="col-lg-2 col-md-4 col-sm-6 position-relative">
+            <a [routerLink]="['/datails', tv.id , 'tv' ]">
+                <img class="w-100" [src]="imgSrc+tv.poster_path" alt="">
+                <p class="py-3 text-center">{{tv.name}}</p>
+                <div class="vote position-absolute d-flex align-items-center justify-content-center bg-info">
+                    {{tv.vote_average}}</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="w-100 py-5  d-flex justify-content-center ">
+        <div class="btn-group  " role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary bigger" *ngIf="pageNum > 5" (click)="prev()">
+                <i class="fas fa-angle-left"></i>
+            </button>
+            <button type="button" class="btn btn-primary bigger" (click)="tvsPage(1)">1</button>
+            <button type="button" class="btn btn-primary bigger" (click)="tvsPage(2)">2</button>
+            <button type="button" class="btn btn-primary bigger" (click)="tvsPage(3)">3</button>
+            <button type="button" class="btn btn-primary bigger" (click)="tvsPage(4)">4</button>
+            <button type="button" class="btn btn-primary bigger" (click)="page5()" (click)="tvsPage(5)">5</button>
+            <button type="button" class="btn btn-primary bigger" (click)="next()">
+                <i class="fas fa-angle-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container py-5" *ngIf="value != '' ">
+    
+    <h2 *ngIf="searchTv == 'notfound'" class="mt-5  text-center alert alert-danger">this tv is not notfound</h2>
+    <div class="row pt-5" *ngIf="searchTv != 'notfound'">
+        <div *ngFor="let tv of searchTv" class="col-lg-2 col-md-4 col-sm-6 position-relative">
+            <a [routerLink]="['/datails', tv.id , 'tv' ]">
+                <img class="w-100" [src]="imgSrc+tv.poster_path" alt="">
+                <img class="w-100 said" *ngIf="tv.poster_path == null" src="../../assets/pp.jfif" alt="">
+                <p class="py-3 text-center">{{tv.name}}</p>
+                <div class="vote position-absolute d-flex align-items-center justify-content-center bg-info">
+                    {{tv.vote_average}}</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

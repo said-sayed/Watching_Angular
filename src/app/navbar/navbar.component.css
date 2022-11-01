@@ -1,0 +1,36 @@
+.design{
+    width: 0px;
+    height: 2px;
+    background: #fff;
+    margin-left: 5px;
+
+}
+li:hover .design{
+    width: 63px;
+    transition-duration: .5s;
+
+}
+
+.designTv{
+    width: 0px;
+    height: 2px;
+    background: #fff;
+    margin-left: 5px;
+
+}
+.tv:hover .designTv {
+    width: 30px;
+    transition-duration: .5s;
+
+}
+a:hover{
+    color: #fff !important;
+}
+
+.navbar-brand{
+    font-size: 30px;
+    font-weight: 900;
+}
+nav{
+    z-index: 99999;
+}

@@ -1,0 +1,142 @@
+<div class=" position-relative">
+    <div class="padding w-100 position-absolute  ">
+        <input type="search" class=" form-control  w-50 search m-auto " (keyup)="multiSearch()" [(ngModel)]="value"
+            placeholder="search...">
+    </div>
+    <div *ngIf="value == '' ">
+        <div class="w-100 background  vh-100 d-flex align-items-end justify-content-center ">
+            <div class="dragon container ">
+                <div>
+                    <h2 class="private ">Watching Your Trending Movies </h2>
+                    <owl-carousel-o [options]="customOptions" class="bg-success">
+                        <ng-container *ngFor="let movie of arrayOfAllMovies" class="bg-info mt-0">
+                            <ng-template carouselSlide [id]="movie.id" class="mt-0 bg-light">
+                                <a [routerLink]="['/datails' , movie.id , 'movie']">
+                                    <img *ngIf="movie.poster_path != null" class="w-100"
+                                        [src]="imgSrc+movie.poster_path" alt="">
+                                    <img *ngIf="movie.poster_path == null" class="w-100" src="../../assets/download (2).jpeg"
+                                        alt="">
+                                </a>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container px-5 ">
+            <div class="row my-5 p-5">
+                <div class="col-md-4 col- d-flex align-items-start justify-content-center">
+                    <div class="pt-5 ">
+                        <div class="brd m-auto mb-5 w-50 "></div>
+                        <h2 class="text-center">Trending Movies To Watch Right Now</h2>
+                        <div class="brd m-auto my-5 w-50 "></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-lg-2" *ngFor="let movie of arrayOfMovie">
+                    <a [routerLink]="['/datails' , movie.id , 'movie']">
+                        <div class="position-relative Star">
+                            <div class="position-relative">
+                                <img class="w-100" [src]="imgSrc+movie.poster_path" alt="">
+                                <h5 class="w-100 text-center watch bg-info position-absolute py-2">watch now </h5>
+                                <div class="d-flex bg-danger downlaod position-absolute w-100">
+                                    <h5 class="w-100 text-center mt-1 ">Downlaod</h5>
+                                    <i class="fas fa-download m-2 "></i>
+                                </div>
+
+                            </div>
+                            <h2 class=" h5 py-3 text-center">{{movie.title}}</h2>
+                            <i class="fas fa-star position-absolute star"></i>
+
+                            <p class="position-absolute vote bg-info  d-flex align-items-center justify-content-center">
+                                {{movie.vote_average}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row p-5">
+                <div class="col-md-4 d-flex align-items-start justify-content-center">
+                    <div class="pt-5">
+                        <div class="brd m-auto mb-5 w-50 "></div>
+                        <h2 class=" text-center ">Trending Tv To Watch Right Now</h2>
+                        <div class="brd m-auto my-5 w-50 "></div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-lg-2 col-sm-6" *ngFor="let tv of arrayOfTv">
+                    <a [routerLink]="['/datails' , tv.id , 'tv']">
+                        <div class="position-relative Star">
+                            <div class="position-relative">
+                                <img class="w-100" [src]="imgSrc+tv.poster_path" alt="">
+                                <h5 class="w-100 text-center watch bg-info position-absolute py-1">watch now </h5>
+                                <div class="d-flex bg-danger downlaod position-absolute w-100">
+                                    <h5 class="w-100 text-center mt-1 ">Downlaod</h5>
+                                    <i class="fas fa-download m-2 "></i>
+                                </div>
+                            </div>
+                            <h2 class=" h5 py-3 text-center">{{tv.name}}</h2>
+                            <i class="fas fa-star position-absolute star"></i>
+                            <p class="position-absolute vote bg-info  d-flex align-items-center justify-content-center">
+                                {{tv.vote_average}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row my-5 p-5">
+                <div class="col-md-4 d-flex align-items-start justify-content-center">
+                    <div class="pt-5">
+                        <div class="brd m-auto mb-5 w-50 "></div>
+                        <h2 class=" text-center  ">Trending Person To Watch Right Now</h2>
+                        <div class="brd m-auto my-5 w-50 "></div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-sm-6 col-lg-2" *ngFor="let Person of arrayOfPerson">
+                    <a [routerLink]="['/datails' , Person.id , 'person']">
+                        <img class="w-100" [src]="imgSrc+Person.profile_path" alt="">
+                        <h2 class=" h5 py-3 text-center">{{Person.name}}</h2>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="container vh-100  py-5" *ngIf="value != ''">
+        <div class="mt-5 py-5">
+            <h2 class="mt-5  text-center ">Search results for {{value}} </h2>
+            <div class="row pt-5" *ngIf="searchMulti != 'notfound'">
+                <div *ngFor="let multi of searchMulti" class="col-lg-2 col-md-4 col-sm-6 position-relative">
+
+                    <a *ngIf="multi.media_type == 'movie' " [routerLink]="['/datails' , multi.id , 'movie' ]">
+                        <img *ngIf="multi.poster_path" class="w-100" [src]="imgSrc+multi.poster_path" alt="">
+                        <img *ngIf="multi.poster_path == null" class="w-100 imageMe" src="../../assets/download (2).jpeg" alt="">
+                        <p class="text-center py-3">{{multi.title}}</p>
+                    </a>
+
+                    <a *ngIf="multi.media_type == 'tv' " [routerLink]="['/datails' , multi.id , 'tv' ]">
+                        <img *ngIf="multi.poster_path" class="w-100" [src]="imgSrc+multi.poster_path" alt="">
+                        <img *ngIf="multi.poster_path == null" class="w-100 imageMe" src="../../assets/download (2).jpeg" alt="">
+                        <p class="text-center py-3">{{multi.name}}</p>
+                    </a>
+
+                    <a *ngIf="multi.media_type == 'person' " [routerLink]="['/datails' , multi.id , 'person' ]">
+                        <img *ngIf="multi.profile_path" class="w-100" [src]="imgSrc+multi.profile_path" alt="">
+                        <img *ngIf="multi.profile_path == null" class="w-100 imageMe" src="../../assets/download (2).jpeg" alt="">
+                        <p class="text-center py-3">{{multi.name}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,62 @@
+<div class="pt-5">
+    <div class="w-100 pt-5">
+        <input type="text" class="form-control w-50  m-auto" (keyup)="movieSearch()" placeholder="search..."
+            [(ngModel)]="value">
+            <h2 class="text-center py-4">enjoy and watch all favourite films here </h2>
+    </div>
+</div>
+
+<div class="" *ngIf="value == '' ">
+    <div >
+        <div class="container " >
+            <div class="row ">
+                <div *ngFor="let movie of movies" class="col-lg-2 col-md-4 col-sm-6 my-3">
+                    <a [routerLink]="['/datails' , movie.id , 'movie']">
+                        <div class="position-relative">
+                            <img class="w-100" [src]="imgSrc+movie.poster_path" alt="">
+                            <h5 class="py-3 text-center">{{movie.title}}</h5>
+                            <p class="position-absolute vote bg-info d-flex align-items-center justify-content-center">
+                                {{movie.vote_average}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100  d-flex justify-content-center my-5" >
+            <div class="btn-group  " role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary bigger" *ngIf="page > 5" (click)="prev()">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <button type="button" class="btn btn-primary bigger" (click)="moviesPage(1)">1</button>
+                <button type="button" class="btn btn-primary bigger" (click)="moviesPage(2)">2</button>
+                <button type="button" class="btn btn-primary bigger" (click)="moviesPage(3)">3</button>
+                <button type="button" class="btn btn-primary bigger" (click)="moviesPage(4)">4</button>
+                <button type="button" class="btn btn-primary bigger" (click)="page5()"
+                    (click)="moviesPage(5)">5</button>
+                <button type="button" class="btn btn-primary bigger" (click)="next()">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container " *ngIf='value != "" '>
+    <h2 *ngIf="searchMovie == 'notfound'" class="mt-5  text-center alert alert-danger">this movie is not notfound </h2>
+    <div class="row " *ngIf="searchMovie != 'notfound'">
+        <div *ngFor="let movie of searchMovie" class="col-lg-2 col-md-4 col-sm-6 my-3">
+            <a [routerLink]="['/datails' , movie.id , 'movie']">
+                <div class="position-relative">
+                    <img *ngIf="movie.poster_path" class="w-100" [src]="imgSrc+movie.poster_path" alt="">
+                    <img *ngIf="movie.poster_path ==null" class="w-100" src="../../assets/download (2).jpeg" alt="">
+                    <h5 class="py-3 text-center">{{movie.title}}</h5>
+                    <p class="position-absolute vote bg-info d-flex align-items-center justify-content-center">
+                        {{movie.vote_average}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

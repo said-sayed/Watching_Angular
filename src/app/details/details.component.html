@@ -1,0 +1,45 @@
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-md-5 py-5">
+                <div *ngIf="movieDetails.number_of_seasons || movieDetails.title">
+                    <img class="w-100" *ngIf="movieDetails.poster_path" [src]="imgSrc+movieDetails.poster_path" alt="">
+                    <img class="w-100" *ngIf="movieDetails.poster_path == null" src="../../assets/download (2).jpeg" alt="">
+                </div>
+                <div *ngIf="movieDetails.known_for_department">
+                    <img class="w-100" *ngIf="movieDetails.profile_path" [src]="imgSrc+movieDetails.profile_path" alt="">
+                    <img class="w-100" *ngIf="movieDetails.profile_path == null" src="../../assets/download (2).jpeg" alt="">
+                </div>
+
+            </div>
+            <div class="col-md-6 ms-auto py-5 ">
+                <h2 class="pb-5" *ngIf="movieDetails.title">{{movieDetails.title}}</h2>
+                <h2 class="pb-5" *ngIf="movieDetails.name">{{movieDetails.name}}</h2>
+                <p class="pb-4" *ngIf="movieDetails.overview">{{movieDetails.overview}}</p>
+                <p class="pb-4" *ngIf="movieDetails.vote_average">vote_average = {{movieDetails.vote_average}}</p>
+                <p class="pb-4" *ngIf="movieDetails.vote_count">vote_count = {{movieDetails.vote_count}}</p>
+                <p class="pb-4" *ngIf="movieDetails.revenue">the Revenues = {{movieDetails.revenue}} $</p>
+                <p class="pb-4" *ngIf="movieDetails.runtime">the Runtime = {{movieDetails.runtime}} min</p>
+                <p class="pb-4" *ngIf="movieDetails.budget">budget = {{movieDetails.budget}}</p>
+
+                <p class="pb-4" *ngIf="movieDetails.number_of_seasons">season {{movieDetails.number_of_seasons}}</p>
+
+                <p class="pb-4" *ngIf="movieDetails.biography">{{movieDetails.biography}}</p>
+                <p class="pb-4" *ngIf="movieDetails.birthday">birthday : {{movieDetails.birthday}}</p>
+                <p class="pb-4" *ngIf="movieDetails.known_for_department">known_for_department :
+                    {{movieDetails.known_for_department}}</p>
+                <p class="pb-4" *ngIf="movieDetails.place_of_birth">place_of_birth : {{movieDetails.place_of_birth}}</p>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center py-5 my-5">
+            <div class="video w-75 bg-black d-flex justify-content-center align-items-center py-5 my-5">
+                <a [href]="movieDetails.homepage">
+                    <img class="imgVideo" src="../../assets/total-video-player-logo.png" alt="">
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>

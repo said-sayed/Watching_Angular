@@ -1,0 +1,15 @@
+.color{
+    color: red;
+}
+
+.eye{
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+.login{
+    font-size: 23px !important;
+    color: rgb(103, 103, 177);
+}

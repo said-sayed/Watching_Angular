@@ -1,0 +1,32 @@
+<section class="py-5 d-flex justify-content-center ">
+    <div class="w-75 py-4   ">
+        <h2 class="text-center py-4">please, Write your message</h2>
+
+        <div class="bg-dark w-75 m-auto py-3">
+            <div class=" pt-5  d-flex justify-content-between ">
+
+                <input type="text" placeholder="Name" class="width brd form-control " [(ngModel)]="username">
+                <input type="number" placeholder="age" class="width brd form-control ">
+            </div>
+
+            <div class=" pt-5 d-flex justify-content-between">
+                <input type="email" placeholder="Email" class="width brd form-control">
+                <input type="number" placeholder="Phone" class="width brd form-control">
+            </div>
+
+            <textarea cols="300" class="textA m-auto my-5 form-control" rows="4" placeholder="your_message"
+                [(ngModel)]="userComment"></textarea>
+            <button (click)="show()" class="btn btn-info mx-4" type="submit">send</button>
+        </div>
+
+        <div class="bgblack w-75 m-auto py-3">
+            <h2 class="pb-5 text-center">Messages</h2>
+            <div class="" *ngFor="let user of users , let i = index">
+                <h4 class="m-0"> {{user.name}} :</h4>
+                <p class="m-0 px-4">{{user.comment}}</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

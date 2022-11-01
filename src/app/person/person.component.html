@@ -1,0 +1,52 @@
+<div class="container pt-5">
+    <input type="text" class="form-control mt-5 w-50 m-auto" (keyup)="personSearch()" placeholder="search..."
+        [(ngModel)]="value">
+        <h2 class="text-center py-4">enjoy and watch all favourite people show here </h2>
+
+</div>
+
+<div *ngIf="value == '' ">
+    <div class="container">
+        <div class="row pt-4">
+            <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let person of persons">
+               <a [routerLink]="['/datails' , person.id , 'person']">
+                <img class="w-100" [src]="imgSrc+person.profile_path" alt="">
+                <p class="text-center py-3" >{{person.name}}</p >
+               </a>
+            </div>
+        </div>
+    
+        <div class="w-100 py-5  d-flex justify-content-center ">
+            <div class="btn-group  " role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary bigger" *ngIf="pageNum > 5" (click)="prev()">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <button type="button" class="btn btn-primary bigger" (click)="personsPage(1)">1</button>
+                <button type="button" class="btn btn-primary bigger" (click)="personsPage(2)">2</button>
+                <button type="button" class="btn btn-primary bigger" (click)="personsPage(3)">3</button>
+                <button type="button" class="btn btn-primary bigger" (click)="personsPage(4)">4</button>
+                <button type="button" class="btn btn-primary bigger" (click)="page5()" (click)="personsPage(5)">5</button>
+                <button type="button" class="btn btn-primary bigger" (click)="next()">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<div class="container py-5" *ngIf="searchPerson != ''">
+    <h2 *ngIf="searchPerson == 'notfound'" class="mt-5  text-center alert alert-danger">this person is not notfound</h2>
+    <div class="row pt-5" *ngIf="searchPerson != 'notfound'">
+        <div *ngFor="let person of searchPerson" class="col-lg-2 col-md-4 col-sm-6 position-relative">
+            <a [routerLink]="['/datails', person.id , 'person' ]">
+                <img *ngIf="person.profile_path != null" class="w-100" [src]="imgSrc+person.profile_path" alt="">
+                <img *ngIf="person.profile_path == null" class="w-100 said" src="../../assets/download (2).jpeg" alt="">
+                <p class="py-3 text-center">{{person.name}}</p>
+                <div class="vote position-absolute d-flex align-items-center justify-content-center bg-info">
+                    {{person.vote_average}}</div>
+            </a>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

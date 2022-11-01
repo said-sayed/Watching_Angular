@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100 ">
+  <div class="container-fluid">
+    <a class="navbar-brand " routerLink="/home">Watching</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mx-5 " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
+
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link" routerLink="home">Home</a>
+          <div  class="design"></div>
+        </li>
+
+
+
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link" routerLink="movie">Movie</a>
+          <div class="design"></div>
+        </li>
+
+        <li class="nav-item tv" *ngIf="islogin">
+          <a class="nav-link" routerLink="tv">Tv</a>
+          <div class="designTv"></div>
+        </li>
+
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link" routerLink="person">Person</a>
+          <div class="design"></div>
+        </li>
+
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link" routerLink="contact">Contact</a>
+          <div class="design"></div>
+        </li>
+
+
+
+      </ul>
+
+
+
+      <ul class="navbar-nav  mb-2 mb-lg-0 me-5 ">
+        <li class="nav-item" *ngIf="!islogin">
+          <a class="nav-link" routerLink="register">Register</a>
+          <div class="design"></div>
+        </li>
+
+        <li class="nav-item" *ngIf="!islogin ">
+          <a class="nav-link" routerLink="login">Login</a>
+          <div class="design"></div>
+        </li>
+
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link">Setting</a>
+          <div class="design"></div>
+        </li>
+
+        <li class="nav-item" *ngIf="islogin">
+          <a class="nav-link" routerLink="login" (click)="isLogout()">Logout</a>
+          <div class="design"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

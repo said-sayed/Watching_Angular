@@ -1,0 +1,36 @@
+<div class="w-75 py-5 m-auto ">
+    <div class="py-5">
+        <div class="py-5">
+
+
+            <p class="color pt-2 text-center mt-5" *ngIf="errors">{{errors}}</p>
+
+            <form [formGroup]="loginForm" class="my-5" (ngSubmit)="Login()">
+                <div class="my-4">
+                    <input type="email" class="form-control" placeholder="email" formControlName="email">
+                    <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched ">
+                        <p class="color pt-2" *ngIf="loginForm.get('email')?.errors?.required">email is required</p>
+                        <p class="color pt-2" *ngIf="loginForm.get('email')?.errors?.email">email is invalid</p>
+                    </div>
+                </div>
+
+                <div class="my-4">
+                    <div class="position-relative">
+                        <input type="{{types}}" class="form-control" placeholder="password" formControlName="password">
+                        <i (click)="type()" *ngIf="salsh=='far fa-eye-slash'"
+                            class="far fa-eye-slash position-absolute eye"></i>
+                        <i (click)="slashForI()" *ngIf="salsh=='far fa-eye'"
+                            class="far fa-eye position-absolute eye"></i>
+                    </div>
+                    <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched ">
+                        <p class="color pt-2" *ngIf="loginForm.get('password')?.errors?.required">password is required
+                        </p>
+                        <p class="color pt-2" *ngIf="loginForm.get('password')?.errors?.password">password is uncorrect
+                        </p>
+                    </div>
+                </div>
+                <button class="btn btn-info" [disabled]="loginForm.invalid">login</button>
+            </form>
+        </div>
+    </div>
+</div>
